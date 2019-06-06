@@ -65,7 +65,7 @@ header{
     text-indent:-999px;
     z-index: -900; /* 必要であればリンク要素の重なりのベース順序指定 */
 }
-#article1{background: url(./img/sc/Flappy.png);
+#article1{background: url(./img/sc/error.png);
           background-size: auto 100%;}
 #article2{background: url(./img/sc/KSSHP.png);
           background-size: auto 100%;}
