@@ -1,0 +1,261 @@
+:root {
+  --article-height: calc(var(--article-width)*0.75);
+  --article-row-gap: 2vw;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  color: #333;
+  font-family: Verdana, "Yu Gothic", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+header {
+  background-image:
+    url(./img/title-logo10.png);
+  width: 95vw;
+  height: 18.04vw;
+  /* 画像;970x175なので h=w*(h/w) = 100vw*(175/970) = 18.04vw */
+  margin: 2vh auto;
+  border-bottom: #333;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  cursor: pointer;
+}
+
+#main-contents {
+  margin: 0 1em 3em;
+}
+
+/***** Hamburger menu  *****/
+
+#right-ham-menu {
+  display: none;
+}
+
+#right-ham-menu {
+  display: none;
+}
+
+#hamMenu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: fixed;
+  opacity: 0;
+  display: none;
+  top: 50vh;
+  left: 0;
+  width: 100vw;
+  z-index: 100;
+  color: #ffffff;
+  font-weight: 900;
+  text-align: center;
+}
+
+#hamMenu.showing {
+  opacity: 1;
+  display: inline-block;
+  transition: 1200ms;
+}
+
+#hamMenu>li {
+  margin: 0.4em 0;
+}
+
+#right-hamMenu-button.active,
+#left-hamMenu-button.active {
+  z-index: 105;
+}
+
+@media screen and (min-width: 960px) {
+
+  /*PC*/
+  :root {
+    --article-width: 28vw;
+  }
+
+  /*スクロールバーの全体*/
+  body::-webkit-scrollbar {
+    width: 10px;
+    height: 100%;
+  }
+
+  /*スクロールバーの軌道*/
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /*スクロールバーの動く部分*/
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 50, .5);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .3);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(139, 46, 46);
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 960px) {
+
+  /*tablet & smartphone(Side)*/
+  :root {
+    --article-width: 43vw;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+
+  /*smartphone(Vertical)*/
+  :root {
+    --article-width: 88vw;
+    --article-row-gap: 6vw;
+  }
+
+  /* -------------------- 正規表現エリア開始 -------------------- */
+  /* 　　　　　　　　（競合する＆共通化する　ため。） 　　　　　　　　*/
+  [id*="hamMenu-button"] {
+    position: fixed;
+    top: 50vh;
+    height: 8vh;
+    width: 8vh;
+    transition: 600ms;
+    border-radius: 50%;
+  }
+
+  [id*="hamMenu-button"] span {
+    position: absolute;
+    display: block;
+    width: 25%;
+    height: 6%;
+    background: #eee;
+    border-radius: 20%;
+    transition: 700ms;
+  }
+
+  .active[id *="hamMenu-button"] span,
+  [id *="hamMenu-back"] {
+    background: #5ca04d;
+  }
+
+  [id *="hamMenu-back"] {
+    position: fixed;
+    top: 50vh;
+    height: 8vh;
+    width: 8vh;
+    /* z-index: 98; */
+    border-radius: 50%;
+    transition: 500ms;
+  }
+
+  /* -------------------- 正規表現エリア終了 -------------------- */
+
+  #left-hamMenu-button {
+    left: -4vh;
+    /* z-index: 99; */
+    /* background: rgb(255, 180, 0); */
+    background: transparent;
+  }
+
+  #left-hamMenu-button span {
+    left: 60%;
+  }
+
+  #left-hamMenu-button span:nth-of-type(1) {
+    top: 42.5%;
+    transform: rotate(45deg);
+  }
+
+  #left-hamMenu-button span:nth-of-type(2) {
+    top: 57.5%;
+    /* calc(100% - 42.5%) */
+    transform: rotate(-45deg);
+  }
+
+
+  #left-hamMenu-button.active {
+    transform: translateX(8vh);
+    background: #eee;
+    /* z-index: 99; */
+  }
+
+  #left-hamMenu-button.active span:nth-of-type(1) {
+    transform: translate(-1.7vh, .6vh) rotate(-45deg) scale(2);
+  }
+
+  #left-hamMenu-button.active span:nth-of-type(2) {
+    transform: translate(-1.7vh, -.6vh) rotate(45deg) scale(2);
+  }
+
+  #left-hamMenu-back {
+    left: -4vh;
+  }
+
+  #left-hamMenu-back.active {
+    transform: scale(30);
+    /* z-index: 98; */
+    /* border-radius: 0%; */
+  }
+
+  .left-disappear-animation {
+    transform: translateX(-4vh);
+  }
+
+  #right-hamMenu-button {
+    right: -4vh;
+    /* z-index: 99; */
+  }
+
+  #right-hamMenu-button span {
+    right: 60%;
+  }
+
+  #right-hamMenu-button span:nth-of-type(1) {
+    top: 42.5%;
+    transform: rotate(-45deg);
+  }
+
+  #right-hamMenu-button span:nth-of-type(2) {
+    top: 57.5%;
+    transform: rotate(45deg);
+  }
+
+  #right-hamMenu-button.active {
+    transform: translateX(-8vh);
+    background: #eee;
+  }
+
+  #right-hamMenu-button.active span:nth-of-type(1) {
+    transform: translate(1.7vh, .6vh) rotate(45deg) scale(2);
+  }
+
+  #right-hamMenu-button.active span:nth-of-type(2) {
+    transform: translate(1.7vh, -.6vh) rotate(-45deg) scale(2);
+  }
+
+  #right-hamMenu-back {
+    right: -4vh;
+  }
+
+  #right-hamMenu-back.active {
+    transform: scale(30);
+  }
+
+  .right-disappear-animation {
+    transform: translateX(4vh);
+  }
+
+  .hamMenu-contents {
+    text-decoration: none;
+  }
+}
