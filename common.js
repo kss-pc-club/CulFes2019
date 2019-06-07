@@ -204,7 +204,7 @@ function transURL(url, baseURL) {
 
 	if (url.indexOf(":") >= 0) return url; // absolute path
 	if (url.startsWith("#")) return url; // hash
-	if (url.startsWith("/")) return url; // absolute path
+	if (url.startsWith("/")) return "/CulFes2019" + url; // absolute path
 	return baseURL + url;
 }
 /**
@@ -231,6 +231,6 @@ function getURLQuery() {
 
 document.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("global-header").addEventListener("click", () => {
-		location = "/";
+		location = "/CulFes2019";
 	});
 });
