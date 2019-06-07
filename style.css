@@ -66,18 +66,18 @@ header{
     z-index: -900; /* 必要であればリンク要素の重なりのベース順序指定 */
 }
 #article1{background: url(./img/sc/Flappy.png);
-          background-size: auto 100%;}
+            background-size: auto 100%;}
 #article2{background: url(./img/sc/KSSHP.png);
-          background-size: auto 100%;}
+            background-size: auto 100%;}
 #article3{background: url(./img/sc/Prime.png);}
 #article4{background: url(./img/sc/15puzzle.png)}
 #article5{background: url(./img/sc/jinrou.png);}
-#article6{background: url(./img/sc/seizya.png);
-            background-size: auto 100%;}
-
 #article10{background: url(./img/sc/line_follow_machine.jpg);
-           background-size: auto 100%;}
-
+            background-size: auto 100%;}
+#article6{background: url(./img/sc/seizya.png);
+	    background-size: auto 100%;}
+#article7{background: url(./img/sc/tettype.png);
+	    background-size: 100% auto;}
 #right-ham-menu{
     display: none;
 }
@@ -127,6 +127,7 @@ header{
     :root{
         --article-width: 43vw;
     }
+    
 }
 
 @media screen and (max-width: 480px) {/*smartphone(Vertical)*/
