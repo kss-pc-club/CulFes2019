@@ -87,6 +87,11 @@
   background-size: 100% auto;
 }
 
+#article8{
+  background-image: url(../../img/sc/10secChallenge.png);
+  background-size: auto 100%;
+}
+
 @media screen and (max-width: 480px) {
   .article-title {
     border-bottom: solid 1px #000;
