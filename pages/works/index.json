@@ -4,5 +4,8 @@
 	},
 	"tettype": {
 		"title": "テトリスタイピング"
+	},
+	"15puzzle": {
+		"title": "15puzzle"
 	}
 }

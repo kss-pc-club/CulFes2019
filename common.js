@@ -86,7 +86,7 @@ function loadPage(ev) {
 		tmp.shift();
 		const workID = tmp.join("-");
 		console.log(`loading works page associated to '${workID}'`);
-		loadArticle("pages/works/" + workID + "/contents.html", loadWorksTitles(workID));
+		loadArticle("pages/works/" + workID + ".html", loadWorksTitles(workID));
 
 	} else {
 		show404();
