@@ -78,6 +78,9 @@ function loadPage(ev) {
 		console.log("loading landing page");
 		loadArticle("pages/landing/article.html", "KSS PC Club / Menu");
 
+	} else if (pageID == "404") {
+		show404();
+
 	} else if (pageID.startsWith("works-")) {
 		const tmp = pageID.split("-");
 		tmp.shift();
@@ -86,12 +89,7 @@ function loadPage(ev) {
 		loadArticle("pages/works/" + workID + "/contents.html", loadWorksTitles(workID));
 
 	} else {
-		if (ev.oldURL) { // 多分普通のアンカー
-			// Do nothing
-		} else { // 多分404
-			// TODO
-			console.error("404");
-		}
+		show404();
 	}
 	console.groupEnd();
 }
@@ -103,15 +101,28 @@ const loadWorksTitles = (() => {
 			map = json;
 		});
 	return (workID) => {
-		const getTitle = () => map[workID] ? map[workID].title : undefined;
+		const getTitle = () => map[workID] && map[workID].title ? "KSS PC club / " + map[workID].title : undefined;
 		if (map) return Promise.resolve(getTitle());
 		else return promise.then(() => getTitle());
 	}
 })();
 function loadArticle(url, title) {
 	return fetch(url)
-		.then(res => res.text())
-		.then(html => showArticle(html, getBaseURL(url), title));
+		.then(res => {
+			if (res.ok) {
+				return res.text();
+			} else {
+				throw res.statusText;
+			}
+		})
+		.then(html => showArticle(html, getBaseURL(url), title))
+		.catch(err => {
+			console.error(err);
+			show404();
+		})
+}
+function show404() {
+	return loadArticle("pages/404/article.html", "KSS PC club / Not found");
 }
 /**
  * @param {string} html 
@@ -155,7 +166,7 @@ function showArticle(html, baseURL, title) {
 	const setTitle = title => {
 		if (title === undefined) {
 			console.warn("Page title was not provided.");
-			title = "KSS PC Club";
+			title = "KSS PC club";
 		}
 		document.title = title;
 	};
