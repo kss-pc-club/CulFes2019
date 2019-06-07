@@ -1,0 +1,95 @@
+#content-inner {
+  position: absolute;
+  top: calc(4vh + 18.04vw);
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -903;
+}
+
+#article-container {
+  margin: 0 auto;
+  width: 88vw;
+  display: grid;
+  background-image: transparent;
+  grid-auto-rows: var(--article-height);
+  grid-column-gap: 2vw;
+  grid-row-gap: var(--article-row-gap);
+  grid-template-columns: repeat(auto-fill, var(--article-width));
+}
+
+.article {
+  position: relative;
+  background-color: rgb(139, 46, 46);
+  /* margin: 0 7px 12px; */
+  border-radius: 3vh;
+  padding: 0;
+  color: #fff;
+  background-size: cover;
+  text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.6), 0px 1px 3px rgba(0, 0, 0, 0.6), 0px 1px 0 rgba(0, 0, 0, 0.6);
+}
+
+.article .title {
+  display: block;
+  width: calc(100% - 3vw);
+  border-top-left-radius: 3vh;
+  border-top-right-radius: 3vh;
+  padding-top: 1vh;
+  height: 4.5vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding-left: 3vw;
+}
+
+.article a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* 必要であればリンク要素の重なりのベース順序指定 */
+}
+
+#article1 {
+  background-image: url(/img/sc/Flappy.png);
+  background-size: auto 100%;
+}
+
+#article2 {
+  background-image: url(/img/sc/KSSHP.png);
+  background-size: auto 100%;
+}
+
+#article3 {
+  background-image: url(/img/sc/Prime.png);
+}
+
+#article4 {
+  background-image: url(/img/sc/15puzzle.png)
+}
+
+#article5 {
+  background-image: url(/img/sc/jinrou.png);
+}
+
+#article10 {
+  background-image: url(/img/sc/line_follow_machine.jpg);
+  background-size: auto 100%;
+}
+
+#article6 {
+  background-image: url(/img/sc/seizya.png);
+  background-size: auto 100%;
+}
+
+#article7 {
+  background-image: url(/img/sc/tettype.png);
+  background-size: 100% auto;
+}
+
+@media screen and (max-width: 480px) {
+  .article-title {
+    border-bottom: solid 1px #000;
+    font-size: 7vw;
+  }
+}
