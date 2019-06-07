@@ -72,6 +72,8 @@ header{
 #article3{background: url(./img/sc/Prime.png);}
 #article4{background: url(./img/sc/15puzzle.png)}
 #article5{background: url(./img/sc/jinrou.png);}
+#article6{background: url(./img/sc/seizya.png);
+            background-size: auto 100%;}
 
 #article10{background: url(./img/sc/line_follow_machine.jpg);
            background-size: auto 100%;}
