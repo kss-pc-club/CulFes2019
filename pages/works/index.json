@@ -1,11 +1,23 @@
 {
+	"15puzzle": {
+		"title": "15puzzle"
+	},
+	"flappy": {
+		"title": "Flappy Kotabe"
+	},
+	"jinrou": {
+		"title": "ワンナイト人狼"
+	},
+	"ksshp": {
+		"title": "古河中等WebサイトNew"
+	},
 	"prime": {
 		"title": "Prime Shooter"
 	},
+	"seizya": {
+		"title": "Seizya-Projects-6"
+	},
 	"tettype": {
 		"title": "テトリスタイピング"
-	},
-	"15puzzle": {
-		"title": "15puzzle"
 	}
 }
