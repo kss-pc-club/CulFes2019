@@ -46,12 +46,12 @@ header {
 }
 
 #hamMenu {
+  display: none;
+  transition: 1200ms;
   margin: 0;
   padding: 0;
   list-style: none;
   position: fixed;
-  opacity: 0;
-  display: none;
   top: 50vh;
   left: 0;
   width: 100vw;
@@ -61,14 +61,25 @@ header {
   text-align: center;
 }
 
-#hamMenu.showing {
-  opacity: 1;
-  display: inline-block;
-  transition: 1200ms;
+#hamMenu li {
+  margin: 0.4em 0;
 }
 
-#hamMenu>li {
-  margin: 0.4em 0;
+#hamMenu.showing {
+  display: inline-block;
+  animation: showHamMenu 1200ms both;
+}
+
+@keyframes showHamMenu {
+  from {
+    opacity: 0;
+    display: inline-block;
+  }
+
+  to {
+    opacity: 1;
+    display: inline-block;
+  }
 }
 
 #right-hamMenu-button.active,
@@ -203,7 +214,7 @@ header {
 
   #left-hamMenu-back.active {
     transform: scale(30);
-    /* z-index: 98; */
+    z-index: 98;
     /* border-radius: 0%; */
   }
 
