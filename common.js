@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
 //#endregion
 //#region Page Loader
 
-window.addEventListener("hashchange", loadPage);
 document.addEventListener("DOMContentLoaded", loadPage);
 
 // specific functions
@@ -71,20 +70,19 @@ document.addEventListener("DOMContentLoaded", loadPage);
  * @param {HashChangeEvent|undefined} ev 
  */
 function loadPage(ev) {
-	const hash = location.hash;
+	const pageID = getURLQuery()["page"];
 	console.groupCollapsed(`page loading`);
-	console.log(`location.hash == '${hash}'`);
+	console.log(`query == '${pageID}'`);
 
-	if (hash == "") {
+	if (!pageID) {
 		console.log("loading landing page");
-		window.scrollTo({ behavior: "auto", top: 0 });
 		loadArticle("pages/landing/article.html", "KSS PC Club / Menu");
 
-	} else if (hash.startsWith("#works/")) {
-		const workID = hash.split("/")[1];
+	} else if (pageID.startsWith("works-")) {
+		const tmp = pageID.split("-");
+		tmp.shift();
+		const workID = tmp.join("-");
 		console.log(`loading works page associated to '${workID}'`);
-
-		window.scrollTo({ behavior: "auto", top: 0 });
 		loadArticle("pages/works/" + workID + "/contents.html", loadWorksTitles(workID));
 
 	} else {
@@ -208,11 +206,20 @@ function getBaseURL(url) {
 	frag.pop();// filename
 	return frag.join("/") + "/";
 }
+function getURLQuery() {
+	let arg = {};
+	let pair = location.search.substring(1).split('&');
+	pair.forEach((V) => {
+		let kv = V.split('=');
+		arg[kv[0]] = kv[1];
+	});
+	return arg;
+}
 
 //#endregion
 
 document.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("global-header").addEventListener("click", () => {
-		location.hash = "";
+		location = "/";
 	});
 });
