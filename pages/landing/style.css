@@ -51,39 +51,39 @@
 }
 
 #article1 {
-  background-image: url(/img/sc/Flappy.png);
+  background-image: url(./img/sc/Flappy.png);
   background-size: auto 100%;
 }
 
 #article2 {
-  background-image: url(/img/sc/KSSHP.png);
+  background-image: url(./img/sc/KSSHP.png);
   background-size: auto 100%;
 }
 
 #article3 {
-  background-image: url(/img/sc/Prime.png);
+  background-image: url(./img/sc/Prime.png);
 }
 
 #article4 {
-  background-image: url(/img/sc/15puzzle.png)
+  background-image: url(./img/sc/15puzzle.png)
 }
 
 #article5 {
-  background-image: url(/img/sc/jinrou.png);
+  background-image: url(./img/sc/jinrou.png);
 }
 
 #article10 {
-  background-image: url(/img/sc/line_follow_machine.jpg);
+  background-image: url(./img/sc/line_follow_machine.jpg);
   background-size: auto 100%;
 }
 
 #article6 {
-  background-image: url(/img/sc/seizya.png);
+  background-image: url(./img/sc/seizya.png);
   background-size: auto 100%;
 }
 
 #article7 {
-  background-image: url(/img/sc/tettype.png);
+  background-image: url(./img/sc/tettype.png);
   background-size: 100% auto;
 }
 
