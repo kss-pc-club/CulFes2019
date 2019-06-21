@@ -62,15 +62,29 @@ document.addEventListener("DOMContentLoaded", () => {
 //#endregion
 //#region Page Loader
 
-document.addEventListener("DOMContentLoaded", loadPage);
+document.addEventListener("DOMContentLoaded", () => loadPage(undefined, false));
+window.addEventListener("popstate", () => loadPage(undefined, false));
 
 // specific functions
 
 /**
  * @param {HashChangeEvent|undefined} ev 
+ * @returns 普通の読み込み動作で事足りる場合には true が返ってきますので、うまい具合にしてください。
  */
-function loadPage(ev) {
-	const pageID = getURLQuery()["page"];
+function loadPage(url = location.href, shouldAddHistory = true) {
+	url = transURL(url, getBaseURL(location.href));
+	if (url.startsWith(location.origin)) {
+		const pageID = getURLQuery(url)["page"];
+		loadSpecificPage(pageID);
+		if (shouldAddHistory)
+			history.pushState(undefined, "", url);
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function loadSpecificPage(pageID) {
 	console.groupCollapsed(`page loading`);
 	console.log(`query == '${pageID}'`);
 
@@ -106,6 +120,7 @@ const loadWorksTitles = (() => {
 		else return promise.then(() => getTitle());
 	}
 })();
+
 function loadArticle(url, title) {
 	return fetch(url)
 		.then(res => {
@@ -121,6 +136,7 @@ function loadArticle(url, title) {
 			show404();
 		})
 }
+
 function show404() {
 	return loadArticle("pages/404/article.html", "KSS PC club / Not found");
 }
@@ -137,7 +153,7 @@ function showArticle(html, baseURL, title) {
 	const modifier = elem => elem.childNodes.forEach(child => {
 		const tag = child.tagName;
 		if (!tag) return; // text node
-		if (tag == "script") {
+		if (tag == "SCRIPT") {
 			const newElem = cloneHTMLElem(child); // これをしないとスクリプトが再度読み込みされないみたいなので。
 			elem.replaceChild(newElem, child);
 			child = newElem; // 次の処理のために。
@@ -150,6 +166,19 @@ function showArticle(html, baseURL, title) {
 		}
 		transAttrURL("href");
 		transAttrURL("src");
+
+		if (tag == "A") {
+			const href = child.getAttribute("href");
+			if (href && !href.startsWith("#")) {
+				// child.setAttribute("href_url", href); // For debug
+				// child.setAttribute("href", "#");
+				child.addEventListener("click", e => {
+					if (!loadPage(href)) {
+						e.preventDefault();
+					}
+				});
+			}
+		}
 
 		modifier(child);
 	});
@@ -214,12 +243,13 @@ function transURL(url, baseURL) {
 function getBaseURL(url) {
 	if (url.endsWith("/")) return url;
 	const frag = url.split("/");
-	frag.pop();// filename
+	frag.pop(); // filename
 	return frag.join("/") + "/";
 }
-function getURLQuery() {
+
+function getURLQuery(url = location.href) {
 	let arg = {};
-	let pair = location.search.substring(1).split('&');
+	let pair = url2searchQuery(url).split('&');
 	pair.forEach((V) => {
 		let kv = V.split('=');
 		arg[kv[0]] = kv[1];
@@ -227,10 +257,16 @@ function getURLQuery() {
 	return arg;
 }
 
+function url2searchQuery(url) {
+	const tmp = url.split("#")[0].split("?");
+	tmp.shift();
+	return tmp.join("?");
+}
+
 //#endregion
 
 document.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("global-header").addEventListener("click", () => {
-		location = "/CulFes2019";
+		loadPage(location.origin); // TODO: 正しいか？
 	});
 });
