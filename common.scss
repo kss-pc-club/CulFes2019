@@ -24,8 +24,11 @@ body{
         background-position: center center;
         cursor: pointer;
     }
-    #main-contents {
+    #main-contents, #error-page {
         margin: 0 1em 3em;
+        &.hide{
+            display: none;
+        }
     }
 
     // Hamberger Menu

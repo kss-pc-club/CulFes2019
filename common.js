@@ -132,20 +132,24 @@ function loadArticle(url, title) {
 		})
 		.then(html => showArticle(html, getBaseURL(url), title))
 		.catch(err => {
-			console.error(err);
+			console.error("@loadArticle", err);
 			show404();
 		})
 }
 
 function show404() {
-	return loadArticle("pages/404/article.html", "KSS PC club / Not found");
+	document.getElementById("main-contents").classList.add("hide");
+	document.getElementById("error-page").classList.remove("hide");
 }
+
 /**
  * @param {string} html 
  * @param {string} baseURL 
  * @param {string|Promise<string>} title 
  */
 function showArticle(html, baseURL, title) {
+	document.getElementById("main-contents").classList.remove("hide");
+	document.getElementById("error-page").classList.add("hide");
 
 	// Set Contents
 
